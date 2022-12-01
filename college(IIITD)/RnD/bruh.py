@@ -1,7 +1,6 @@
-x=int(input())
-if(x>0):
-    print("Positive")
-elif(x<0):
-    print("Negative")
-else:
-    print("Zero")
+def f(x):
+    global y
+    y = 10
+    return (y+10)
+y = 0
+print(f(y), y)
