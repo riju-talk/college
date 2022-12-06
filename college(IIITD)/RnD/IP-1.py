@@ -1,5 +1,3 @@
-p=int(input())
-r=int(input())
-t=int(input())
-print("The simple intrest is",p*(1+r*t))
-print("The compound intrest is",int(p*((1+r)**t)))
+x=int(input())
+thid_dict={1:"hello", 2:"there"}
+print(thid_dict[x])
