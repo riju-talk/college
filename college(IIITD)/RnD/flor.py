@@ -1,3 +1,2 @@
 import math
-
-print(math.ceil(26**(0.5)))
+print(math.e**1)

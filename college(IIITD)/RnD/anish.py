@@ -1,13 +1,36 @@
-x=int(input())
-def pattern(x):
-    for i in range(1,x+1):
-        for j in range(0,i):
-            print("*",end="")
-       
-        for k in range((x-i)*2):
-            print(" ",end="")
+n=int(input())
+for i in range(1,n):
+    
+    for k in range(n-i,0,-1):
+        print(" ",end="")
+    
+    for j in range(i*2-1):
+        print("*",end="")
+    print("")
+
+for i in range(1,n+1):
    
-        for j in range(0,i):
-            print("*",end="")
-        print("") 
-pattern(x)
+    for k in range(n-i,0,-1):
+        print(" ",end="")
+    
+    for j in range(i*2-1):
+        print("*",end="")
+    print("")
+
+for i in range(1,n):
+    
+    for k in range(0,i):
+        print(" ",end="")
+    
+    for j in range((n-i)*2-1,0,-1):
+        print("*",end="")
+    print("")
+
+for i in range(1,n):
+    
+    for k in range(0,i):
+        print(" ",end="")
+    
+    for j in range((n-i)*2-1,0,-1):
+        print("*",end="")
+    print("")

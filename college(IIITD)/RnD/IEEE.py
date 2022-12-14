@@ -20,4 +20,4 @@ if(n<=99 and n>=0):
     elif(n%10==0):
         tens(n)
     else:
-        ten_compx(n) 
+        ten_compx(n)

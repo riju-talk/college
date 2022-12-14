@@ -1,3 +1,3 @@
-x=int(input())
-for i in range(3,x,3):
-    print(i)
+def pr(x,y):
+    return 90*x+25*y
+print(pr(60,0))

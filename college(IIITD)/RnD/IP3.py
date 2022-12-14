@@ -1,14 +1,17 @@
 import math
 def velocity(t):
-    v = 2000*math.log(140000/140000-2100*t) - 9.8*t
+    v = 2000*(math.log(140000/(140000-2100*t))) - 9.8*t
     return v
 def integrate(a,b,f,dx):
-    summ=f(a)
+    summ=0
     dist=0
-    dxfact=0
-    for i in range(a+1,b+1,dx):
-        dxfact+=dx
-        summ+=f(a+dxfact)
+    j=a
+    while(j<=b):
         dist+=(summ*dx)
+        summ=f(j)
+        j+=dx
     return dist
-x=int(input())
+a = int(input("Enter the starting point: "))
+b = int(input("Enter the final time: "))
+c = integrate(a,b,velocity,0.25)
+print(c)

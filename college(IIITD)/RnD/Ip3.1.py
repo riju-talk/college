@@ -1,21 +1,10 @@
-x=input()
-time=0
-v1,v2=[0,0]
-for i in range(len(x)):
-    if(x[i]=="N"):
-        time+=3
-        v1+=10
-    elif(x[i]=="S"):
-        time+=4
-        v1-=15
-    elif(x[i]=="E"):
-        time+=1
-        v2+=2
-    elif(x[i]=="W"):
-        time+=5
-        v2-=20
-time/=60        
-dist=(v1**2)+(v2**2)
-dist=(dist**0.5)/1000
-print(dist)
-print(time)
+t=[-2,-3,4,-1,-2,1,5,-3]
+ls=list()
+emp=list()
+for k in range(0,len(t)-1):
+    for i in range(len(t)-k):
+        sum=0
+        for j in range(i,len(t)-k):
+            sum+=t[j]
+        emp.append(sum)
+print(max(emp))
