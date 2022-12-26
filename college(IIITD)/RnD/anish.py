@@ -1,36 +1,11 @@
-n=int(input())
-for i in range(1,n):
-    
-    for k in range(n-i,0,-1):
-        print(" ",end="")
-    
-    for j in range(i*2-1):
-        print("*",end="")
-    print("")
-
-for i in range(1,n+1):
-   
-    for k in range(n-i,0,-1):
-        print(" ",end="")
-    
-    for j in range(i*2-1):
-        print("*",end="")
-    print("")
-
-for i in range(1,n):
-    
-    for k in range(0,i):
-        print(" ",end="")
-    
-    for j in range((n-i)*2-1,0,-1):
-        print("*",end="")
-    print("")
-
-for i in range(1,n):
-    
-    for k in range(0,i):
-        print(" ",end="")
-    
-    for j in range((n-i)*2-1,0,-1):
-        print("*",end="")
-    print("")
+def kangaroo(x1, v1, x2, v2):
+    d1=x1+v1
+    d2=x2+v2
+    if(d1%2==0 and d2%2==0):
+        return "YES"
+    elif(d1%2!=0 and d2%2!=0):
+        return "YES"
+    else:
+        return "NO"
+b=kangaroo(21,6,47,3)
+print(b)
