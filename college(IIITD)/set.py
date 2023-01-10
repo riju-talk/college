@@ -1,21 +1,14 @@
-t=list(map(int, input().split()))
-ls=[]
-ind=[]
-for i in range(len(t)):
-    for j in range(len(t)):
-        if(i!=j):
-            if(t[i]>=t[j]):
-                ls.append(t[j]*(abs(i-j)-1))
-            elif(t[i]<=t[j]):
-                ls.append(t[i]*(abs(i-j)-1))
-            ind.append([i,j])
-mx=max(ls)
-f=ind[ls.index(max(ls))]
-t=t[f[0]+1:f[1]]
-for i in t:
-    mx-=i
-if(mx<0):
-    mx=0
-else:
-    mx=mx
-print(mx)
+t=int(input())
+for i in range(t):
+    t1,n,s=list(map(int, input().split()))
+    summ=s
+    result=0
+    for i in range(t1):
+        if(summ>0 and summ<n):
+            result+=summ**2
+            break
+        elif(summ==0):
+            break
+        summ-=n
+        result+=n**2
+    print(result)
