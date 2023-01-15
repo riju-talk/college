@@ -1,2 +1,5 @@
-for k in range(0,6):
-    print(k)
+f=open("trust.txt","w")
+sex=["Fucking right now","Cumming"]
+d=",".join(sex)
+f.write(d)
+f.close()

@@ -1,5 +1,5 @@
-x0=0
-y0=0
+x0=5
+y0=5
 dist=0
 while(True):
     x=int(input("Enter the distance traelled: "))
