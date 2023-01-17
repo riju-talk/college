@@ -1,7 +1,7 @@
 import json
 """
 input:
-name    address    phone    email
+name, address, phone, email
 """
 
 #------Add function-----------
@@ -42,7 +42,7 @@ def search(dic,inp):
             for k in range(len(i)-j):
                 flag=False
                 for l in range(k):
-                    if(inp==i[l:k]):
+                    if(inp.lower()==i[l:k].lower()):
                         flag=True
                         break
                 if(flag):
@@ -106,7 +106,8 @@ def merge(f1,f2):
     ls.append(g)
     
     f=open("merger.txt","w")
-    f.write(str(ls))
+    dump=json.dumps(ls)
+    f.write(dump)
     f.close()
     
     return "merger.txt"
@@ -116,6 +117,7 @@ dump = f.read()
 f.close()
 
 #--------------main program----------------
+print("------The Address Book-------")
 d={"adarsh": [{"address": "h3/81/b1,mahavir enclave,110075", "phone": "9871603930", "email": "marshall.bleucore@gmail.com"},
               {"address": "g-20,janakpuri,110025", "phone": "9899234284", "email": "rijusmit.biswas@gmail.com"}],
    "adesh":{"address":"12-g/10,dwarka sec-14,110075","phone":"9899927270","email":"technosniper.net@gmail.com"},
@@ -125,28 +127,28 @@ if(len(dump)==0):
 else:
     dic=json.loads(dump)
     d=dic
+print()
+print(d)
+print()
 while(True):
     print("Press A to add values to Address book")
     print("Press B to delete values to Address book")
     print("Press C to search values from Address book from names")
     print("Press D to search values from Address book from phone and email")
     print("Press E to exit and save")
-    print("Press enter to exit")
     x=input()
-    if(x==""):
-        break
-    elif(x.lower()=="a"):
+    if(x.lower()=="a"):
         print("input format:\
-\nname    address    phone    email\n tabspace")
+\nname    address    phone    email\n seperator=\" tab\"")
         print("\nEnter your data:")
-        y=input().split()
+        y=input().split("\t")
         add(d,y)
         print("\n",d)
     elif(x.lower()=="b"):
         print("input format:\
-\nname    address    phone    email\n tabspace")
+\nname    address    phone    email\n seperator=\" tab\"")
         print("\nEnter your data:")
-        y=input().split()
+        y=input().split("\t")
         delete(d,y)
         print("\n",d)
     elif(x.lower()=="c"):
@@ -165,7 +167,7 @@ while(True):
     else:
         print("Enter a valid prompt")
 """
-bonus-------
+#------------bonus-------
 f1=r"Assignment RND\Assignnment-2\f1.txt"
 f2=r"Assignment RND\Assignnment-2\f2.txt"
 f=merge(f1,f2)

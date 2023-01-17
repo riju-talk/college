@@ -43,7 +43,7 @@ for i in range(len(matrix)):
 ls_of_new=list()
 #This is the list of all the scaled coordinates.
 for i in matrix:
-    ls_of_new.append((i[0],i[0]))
+    ls_of_new.append((i[0],i[1]))
 """
 Here scaled coordinates are printed along with the scaled shape.
 """
@@ -54,6 +54,6 @@ for i in matrix:
     print()
 print("")
 print("The new cooridinates are: ")
-for i in ls_of_cord:
+for i in ls_of_new:
     print(i,end=" ")
 print("\n")

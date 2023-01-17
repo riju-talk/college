@@ -38,19 +38,22 @@ for i in matrix:
         #this is for the expceptional cases
         if(i[0].isalnum()==False):# this is for invalid course
             print(f"Improper Course number {i[0]}",end=" ")
-        elif(i[1] not in [1,2,4]):# this is for invalid credit
+        if(i[1] not in [1,2,4]):# this is for invalid credit
             print(f"Incorrect Credit {i[0]}",end=" ")
             sum_credits+=0
-        elif(i[2] not in dic.keys()):# this is for if invalid grade
+        if(i[2] not in dic.keys()):# this is for if invalid grade
             print(f"Incorrect Grade {i[0]}",end=" ")
-sgpa/=sum_credits
-"""
-The represtation is Taken out from here
-"""
-newkey=list(course_dic.keys())
-newkey.sort()
-print("\n")
-for i in newkey:
-    print(i,course_dic[i],sep=": ")
-print("....\n")
-print("%0.2f"%sgpa)
+try:
+    sgpa/=sum_credits
+    """
+    The represtation is Taken out from here
+    """
+    newkey=list(course_dic.keys())
+    newkey.sort()
+    print("\n")
+    for i in newkey:
+        print(i,course_dic[i],sep=": ")
+    print("....\n")
+    print("%0.2f"%sgpa)
+except:
+    print()

@@ -13,8 +13,11 @@ def sig_count(dic):
             maxx=i
         else:
             maxx=maxx
-    return [maxx,sg_count.index(maxx)]
-
+    ls=[]
+    for i in range(len(sg_count)):
+        if(maxx==sg_count[i]):
+            ls.append(i)
+    return ls
 d=open("D:\college\college(IIITD)\Assignment RND\Assignnment-2\\test.txt")#This function opens a test file in the local directory
 """
     This program works for file format of.
@@ -69,6 +72,7 @@ names=list(main_dic.keys())
 
 #here the name with maximum signatures is identified and stored in a variable using the index obtained
 #from the function and 
-max_name=names[result[1]]
-
-print(f"{max_name} has the most signatures in all the students")
+max_name=""
+for i in result:
+    max_name+=names[i]+", "
+print(f"{max_name}has the most signatures in all the students")
