@@ -1,3 +1,2 @@
-def pr(x,y):
-    return 90*x+25*y
-print(pr(60,0))
+vp="hello,klsf,fkgjr,;;;;;;;ngjrr nnw :::::::tjj...... jennr jkhanamnt.jkwkcoootor"
+output should be [",;;;;;;;",":::::::","......"]

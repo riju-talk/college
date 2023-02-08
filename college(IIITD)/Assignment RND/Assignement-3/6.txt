@@ -1,0 +1,27 @@
+Advantages of using OO
+1. Easy to gather smaller data.
+2. Easy to manipulate data by creating methods.
+
+Advantages of using Dictionaries
+1. Easy to organise data in a large amount.
+2. Less time taking in traversing due to hashing.
+
+Disadvantages of using OO
+1. Difficult to add attributes and data associated to it.
+2. This appraoch is quite abstract, considering that we can't know the state of object but we can print a dictionary to know the state.
+
+Disadvantages of using Dictionaries
+1. Initializing a dictioanry 
+2. Easy to gather smaller data
+
+Performance comparison for grading operation (give in each line: value of N; time taken by two approaches in seconds, and which is faster and by how much).
+1. N: 1000
+2. Time by OO: 0.010997533798217773 
+3. Time by dictionary: 0.010997533798217773 
+4. X is faster; fraction of time x took is: 0.0
+
+Performance comparison for search operation (give in each line: value of N; time taken by two approaches in seconds, and which is faster and by how much).
+1. N: 1000
+2. Time by OO: 0.2979917526245117 
+3. Time by dictionary: 0.010997533798217773 
+4. X is faster; fraction of time x took is: 0.9630945027794935
