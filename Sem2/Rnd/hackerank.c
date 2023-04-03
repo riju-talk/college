@@ -1,50 +1,89 @@
 #include <stdio.h>
 #include <stdlib.h>
-void print_arr(int*,int);
-void towerofhanoi(int* initarr, int* midarr, int* finalarr, int count, int index){
-    if (count == 1) {
-        finalarr[index] = initarr[0];
-    } else {   
-        // Copy initarr to midarr
-        for (int i = 0; i < count; i++) {
-            midarr[i] = initarr[i];
+
+void merge(int A[], int B[], int ll, int lh, int rl, int rh) {
+    int i = ll, j = rl, k = 0;
+    while (i < lh && j < rh) {
+        if (A[i] > A[j]) {
+            B[k] = A[j];
+            j++;
         }
-        printf("Middle array:- ");
-        print_arr(midarr,count);
-        printf("\n");
-        // Allocate new memory for initarr and copy values from midarr
-        int* new_initarr = (int*) malloc((count - 1) * sizeof(int));
-        for (int i = 1; i < count; i++) {
-            new_initarr[i - 1] = midarr[i];
+        else {
+            B[k] = A[i];
+            i++;
         }
-        initarr = new_initarr;
-        printf("Intitial array:- ");
-        print_arr(new_initarr,count-1);
-        printf("\n");
-        // Move top disk from midarr to finalarr
-        finalarr[index] = midarr[0];
-        printf("Final array:- ");
-        print_arr(finalarr,index+1);
-        printf("\n");
-        towerofhanoi(initarr, midarr, finalarr, count - 1, index+1);
+        k++;
+    }
+    while (i < lh) {
+        B[k] = A[i];
+        i++;
+        k++;
+    }
+    while (j < rh) {
+        B[k] = A[j];
+        j++;
+        k++;
+    }
+    for (int i = 0; i < k; i++) {
+        A[ll + i] = B[i];
     }
 }
 
-void print_arr(int* ptr, int count) {
-    for (int i = 0; i < count; i++) {
-        printf("%d ", ptr[i]);
+void sort(int A[], int B[], int l, int h) {
+    if (h - l < 2) {
+        return;
     }
-    printf("\n");
+    int m = (l + h) / 2;
+    sort(A, B, l, m);
+    sort(A, B, m, h);
+    merge(A, B, l, m, m, h);
+}
+
+int search(int arr[], int start, int end, int target) {
+    int lo = start, hi = end - 1, mid;
+    while (lo <= hi) {
+        mid = lo + (hi - lo) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return -1;
 }
 
 int main() {
-    int g[] = {7, 9, 10, 103, 5, 77, 24, 10};
-    int num = 8, index=0;
-    int* new_arr = &g[0];
-    int* dest = (int*) malloc(num * sizeof(int));
-    int* midg = (int*) malloc(num * sizeof(int));
-    towerofhanoi(new_arr, midg, dest, num,index);
-    printf("\n");
-    print_arr(dest, num);
+    int a;
+    scanf("%d", &a);
+    int arr[500];
+    int tes_arr[500];
+    int emp[500];
+    for (int i = 0; i < a; i++) {
+        scanf("%d", &arr[i]); 
+    }
+    for (int i = 0; i < a; i++) {
+        tes_arr[i] = arr[i];
+    }
+    sort(tes_arr, emp, 0, a);
+    int count = 0;
+    for (int i = 0; i < a; i++) {
+        if(arr[i]==tes_arr[i]){
+            continue;
+        }
+        else{
+            int j = search(tes_arr, i+1, a, arr[i]);
+            if (j == -1) {
+                break;
+            }
+            int temp = tes_arr[i];
+            tes_arr[i] = tes_arr[j];
+            tes_arr[j] = temp;
+            count++;
+        }
+    }
+    printf("%d", count);
+
     return 0;
 }

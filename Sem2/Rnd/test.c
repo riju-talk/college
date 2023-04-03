@@ -3,65 +3,42 @@
 #include <string.h>
 #include <math.h>
 
-void swap(int* a,int* b){
+void swap(int *a,int *b){
     int temp=*a;
     *a=*b;
     *b=temp;
 }
 
-void push(int** mat,int* arr,int n,int m){
-    for(int i=0;i<n;i++){
-        mat[m][i]=arr[i];
-    }
-}
-
-void comb(int* arr,int l, int r,int** mat,int* index){
-    if(l==r){
-        push(mat,arr,r,*index);
-        (*index)++;
+int bruh(int arr[], int cmp[], int index, int lencmp){
+    if(lencmp <= index){
+        return 0;
     }
     else{
-        for(int i=l;i<r;i++){
-            swap(&arr[l],&arr[i]);
-            comb(arr,l+1,r,mat,index);
-            swap(&arr[l],&arr[i]);
+        if(arr[index] == cmp[index]){
+            return bruh(arr, cmp, index + 1, lencmp);
         }
-    } 
-}
-
-int factorial(int c){
-    int prod=1;
-    for(int i=1;i<=c;i++){
-        prod*=i;
+        else{
+            int j = index;
+            while(j<lencmp){
+                if(arr[j]!=cmp[j]){
+                    swap(&arr[index], &arr[j]);
+                    j++;
+                }
+                else{
+                    break;
+                }
+            }
+            return 1 + bruh(arr, cmp, index + 1, lencmp);
+        }
     }
-    return prod;
-}
-
-int** perm(int* arr,int n){
-    int** mat;
-    int index=0;
-    mat=(int**)malloc(factorial(n)*sizeof(int*));
-    for(int i=0;i<factorial(n);i++){
-        mat[i]=(int*)malloc(n*sizeof(int));
-    }
-    comb(arr,0,n,mat,&index);
-    return mat;
 }
 
 int main() 
 {
-    int* arr;
-    arr=(int*)malloc(3*sizeof(int));
-    for(int i=0;i<3;i++){
-        arr[i]=i+1;
-    }
-    int** mat;
-    mat=perm(arr,3);
-    for(int i=0;i<factorial(3);i++){
-        for(int j=0;j<3;j++){
-            printf("%d ", mat[i][j]);
-        }
-        printf("\n");
-    }
+    int arr[]={5,1,10,7,2};
+    int cmp[]={1,2,5,7,10};
+    int *fish=0;
+    int k=bruh(arr,cmp,0,5);
+    printf("%d",k);
     return 0;
 }
