@@ -40,13 +40,13 @@ void sort(int* A, int* B, int l, int h) {
 }
 // Main function...................................
 int main(){
-    int a,arr[100];
+    int a,arr[1000];
     scanf("%d\n",&a);
     for(int i=0;i<a;i++){
         scanf("%d",&arr[i]);
     }
-    int skill_issue[100];
-    int real_bhai[100];
+    int skill_issue[1000];
+    int real_bhai[1000];
     for(int i=0;i<a;i++){
         real_bhai[i]=arr[i];
     }
