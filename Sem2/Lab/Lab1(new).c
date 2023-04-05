@@ -38,6 +38,25 @@ void sort(int A[],int B[],int l,int h){
         merge(A,B,l,m,h);
     }
 }
+
+int search(int arr[], int n, int x, int i) {
+    int left = i;
+    int right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == x) {
+            return mid;
+        }
+        else if (arr[mid] < x) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    return -1; // If element not found
+}
+
 int main(){
     int num,swaps=0;
     int arr[90000],emp[90000],cpy[90000];
@@ -56,17 +75,22 @@ int main(){
         }
         else{
             int index,temp;
-            for(int j=i+1;j<num;j++){
-                if(cpy[j]==arr[i]){
-                    index=j;
+            printf("\n\n----------------------------------------------------\n");
+            sort(arr,emp,i,num);
+            index=search(arr,num,cpy[i],i);
+            for(int i=0;i<num;i++){
+                printf("%d ",arr[i]);
                 }
-            }
-            temp=cpy[i];
-            cpy[i]=cpy[index];
-            cpy[index]=temp;
+            printf("\n");
+            for(int i=0;i<num;i++){
+                printf("%d ",cpy[i]);
+                }
+            printf("\n");
+            temp=arr[i];
+            arr[i]=arr[index];
+            arr[index]=temp;
             swaps++;
         }
     }
-    printf("%d",swaps);
     return 0;
 }
