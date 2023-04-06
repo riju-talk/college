@@ -1,33 +1,42 @@
 #include<stdio.h>
 
-void merge(int A[],int B[],int l,int m,int h){
+typedef struct{
+    int data;
+    int index;
+} record;
+void merge(record A[],record B[],int l,int m,int h){
     int i=l,j=m,k=0;
     while(i<m && j<h){
-        if(A[i]<A[j]){
-            B[k]=A[i];
+        if(A[i].data<A[j].data){
+            B[k].data=A[i].data;
+            B[k].index=A[i].index;
             i++;
         }
         else{
-            B[k]=A[j];
+            B[k].data=A[j].data;
+            B[k].index=A[j].index;
             j++;
         }        
         k++;
     }
     while(i<m){
-        B[k]=A[i];
+        B[k].data=A[i].data;
+        B[k].index=A[i].index;
         i++;
         k++;
     }
     while(j<h){
-        B[k]=A[j];
+        B[k].data=A[j].data;
+        B[k].index=A[j].index;
         j++;
         k++;
     }
     for(int i=0;i<k;i++){
-        A[l+i]=B[i];
+        A[l+i].data=B[i].data;
+        A[l+i].index=B[i].index;
     }
 }
-void sort(int A[],int B[],int l,int h){
+void sort(record A[],record B[],int l,int h){
     if(h-l<2){
         return;
     }
@@ -56,41 +65,38 @@ int search(int arr[], int n, int x, int i) {
     }
     return -1; // If element not found
 }
-
 int main(){
     int num,swaps=0;
-    int arr[90000],emp[90000],cpy[90000];
+    int arr[1000];
+    record rubbish[1000],cpy[1000],emp[1000];
     scanf("%d",&num);
     for(int i=0;i<num;i++){
         scanf("%d",&arr[i]);
     }
     for(int i=0;i<num;i++){
-        cpy[i]=arr[i];
+        rubbish[i].data=arr[i];
+        rubbish[i].index=i;
     }
-    sort(arr,emp,0,num);
-    for (int i = 0; i < num; i++)
-    {
-        if(cpy[i]==arr[i]){
+    for(int i=0;i<num;i++){
+        cpy[i].data=rubbish[i].data;
+        cpy[i].index=rubbish[i].index;
+    }
+    sort(rubbish,emp,0,num);
+    for(int i=0;i<num;i++){
+        if(i==rubbish[i].index){
             continue;
         }
         else{
-            int index,temp;
-            printf("\n\n----------------------------------------------------\n");
-            sort(arr,emp,i,num);
-            index=search(arr,num,cpy[i],i);
-            for(int i=0;i<num;i++){
-                printf("%d ",arr[i]);
-                }
-            printf("\n");
-            for(int i=0;i<num;i++){
-                printf("%d ",cpy[i]);
-                }
-            printf("\n");
-            temp=arr[i];
-            arr[i]=arr[index];
-            arr[index]=temp;
+            while(i!=rubbish[i].index){
+            int index=rubbish[i].index;
+            record temp;
+            temp=rubbish[i];
+            rubbish[i]=rubbish[index];
+            rubbish[index]=temp;
             swaps++;
+            }
         }
     }
+    printf("%d",swaps);
     return 0;
 }

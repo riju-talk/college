@@ -40,7 +40,8 @@ void sort(int A[],int B[],int l,int h){
 }
 int main(){
     int num,swaps=0;
-    int arr[90000],emp[90000],cpy[90000];
+    int arr[90000],emp[90000],cpy[90000],stack[900];
+    int top=-1;
     scanf("%d",&num);
     for(int i=0;i<num;i++){
         scanf("%d",&arr[i]);
