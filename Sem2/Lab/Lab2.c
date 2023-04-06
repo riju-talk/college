@@ -14,12 +14,12 @@ int partition(int arr[100][100], int l, int h, int rows)
     do{
         int coli=colsum(arr,rows,i);
         int colj=colsum(arr,rows,j);
-        while (coli<coll && coli!=coll && i<h)
+        while (coli<coll && coli!=coll && i<h &&i>l)
         {
             i++;
             coli=colsum(arr,rows,i);
         }
-        while (colj>=coll && j>l)
+        while (colj>=coll && j>l || (coll==coll && j>l))
         {
             j--;
             colj=colsum(arr,rows,j);

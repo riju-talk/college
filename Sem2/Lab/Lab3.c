@@ -37,6 +37,7 @@ void sort(int* A, int* B, int l, int h) {
 }
 int main(){
     int arr[100];
+    int n_arr[100];
     int n,q,l,r,k;
     scanf("%d%d",&n,&q);
     for(int i=0;i<n;i++){
@@ -44,6 +45,13 @@ int main(){
     }
     for(int i=0;i<q;i++){
         scanf("%d%d%d",&l,&r,&k);
+        for(int i=l;i<=r;i++){
+            n_arr[i]=arr[i];
+        }
+        int count=0;
+        
+
     }
+
     return 0;
 }
