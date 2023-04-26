@@ -1,86 +1,88 @@
-#include<stdio.h>
-
-// merge sort algo...........................
-void merge(int* A, int* B, int ll, int lh, int rl, int rh) {
-    int i = ll, j = rl, k = 0;
-    while (i < lh && j < rh) {
-        if (A[i] > A[j]) {
-            B[k] = A[j];
-            j++;
-        }
-        else {
-            B[k] = A[i];
-            i++;
-        }
-        k++;
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int rows, colums, *fact, t_max, perry;
+    scanf("%d%d", &rows, &colums);
+    int **mat;
+    mat = (int **)malloc(sizeof(int *) * rows);
+    for (int i = 0; i < rows; i++)
+    {
+        mat[i] = (int *)malloc(sizeof(int) * colums);
     }
-    while (i < lh) {
-        B[k] = A[i];
-        i++;
-        k++;
-    }
-    while (j < rh) {
-        B[k] = A[j];
-        j++;
-        k++;
-    }
-    for (int i = 0; i < k; i++) {
-        A[ll + i] = B[i];
-    }
-}
-// main sort function...............................................
-void sort(int* A, int* B, int l, int h) {
-    if (h - l < 2) {
-        return;
-    }
-    int m = (l + h)/ 2;
-    sort(A, B, l, m);
-    sort(A, B, m, h);
-    merge(A, B, l, m, m, h);
-}
-// Main function...................................
-int main(){
-    int a,arr[1000];
-    scanf("%d\n",&a);
-    for(int i=0;i<a;i++){
-        scanf("%d",&arr[i]);
-    }
-    int skill_issue[1000];
-    int real_bhai[1000];
-    for(int i=0;i<a;i++){
-        real_bhai[i]=arr[i];
-    }
-    sort(arr,skill_issue,0,a);
-    int swaps=0;
-    for(int i=0;i<a;i++){
-        if(arr[i]==real_bhai[i]){//if the first element is in correct position
-        //then continue
-            continue;
-        }
-        else{
-            //then try swapping with all elements of the array to bring 
-            //it into the right position.
-            for(int j=i+1;j<a;j++){
-                int temp;
-                temp=arr[j];
-                arr[j]=arr[i];
-                arr[i]=temp;
-                //first swap then check.
-                if(arr[i]==real_bhai[i]){
-                    //if correct.
-                    swaps++;//swap counter increments
-                    break;
-                }
-                //if not corect swap it back.
-                else{
-                    temp=arr[j];
-                    arr[j]=arr[i];
-                    arr[i]=temp;
-                }
+    char c;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < colums; j++)
+        {
+            scanf(" %c", &c);
+            if (c == 'X')
+            {
+                mat[i][j] = 0;
+            }
+            else if (c == '.')
+            {
+                mat[i][j] = 1;
             }
         }
     }
-    //printing minimum number of swaps
-    printf("%d",swaps);
+    t_max = 0;
+    fact = (int *)malloc(colums * sizeof(int));
+    for (int i = 0; i < colums; i++)
+    {
+        fact[i] = 0;
+    }
+    for (int i = 0; i < rows; i++)
+    {
+        //------------------------------
+        for (int k = 0; k < colums; k++)
+        {
+            if (mat[i][k] == 0)
+            {
+                fact[k] = 0;
+            }
+            else
+            {
+                fact[k] += mat[i][k];
+            }
+        }
+        //-------------------------------
+        int perimeter = 0;
+        int max = 2 * fact[0] + 2 - 1;
+        int hight;
+        int width;
+        for (int i = 0; i < colums; i++)
+        {
+            hight = fact[i];
+            if (hight == 0)
+            {
+                continue;
+            }
+            for (int j = i; j < colums; j++)
+            {
+                width = (j - i + 1);
+                if (fact[j] < hight && fact[j] != 0)
+                {
+                    hight = fact[j];
+                }
+                if (fact[j] == 0)
+                {
+                    break;
+                }
+                perimeter = 2 * width + 2 * hight - 1;
+                if (perimeter > max)
+                {
+                    max = perimeter;
+                }
+            }
+        }
+        perry = max;
+        if (t_max < perry)
+        {
+            t_max = perry;
+        }
+        //--------------------------------------------------
+    }
+    printf("%d", t_max);
     return 0;
 }
