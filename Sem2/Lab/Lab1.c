@@ -1,88 +1,65 @@
-#include <stdio.h>
-#include <stdlib.h>
-int main()
+#include<stdio.h>
+#include<stdlib.h>
+
+
+typedef struct directory
 {
-    int rows, colums, *fact, t_max, perry;
-    scanf("%d%d", &rows, &colums);
-    int **mat;
-    mat = (int **)malloc(sizeof(int *) * rows);
-    for (int i = 0; i < rows; i++)
-    {
-        mat[i] = (int *)malloc(sizeof(int) * colums);
-    }
-    char c;
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < colums; j++)
-        {
-            scanf(" %c", &c);
-            if (c == 'X')
-            {
-                mat[i][j] = 0;
-            }
-            else if (c == '.')
-            {
-                mat[i][j] = 1;
-            }
-        }
-    }
-    t_max = 0;
-    fact = (int *)malloc(colums * sizeof(int));
-    for (int i = 0; i < colums; i++)
-    {
-        fact[i] = 0;
-    }
-    for (int i = 0; i < rows; i++)
-    {
-        //------------------------------
-        for (int k = 0; k < colums; k++)
-        {
-            if (mat[i][k] == 0)
-            {
-                fact[k] = 0;
-            }
-            else
-            {
-                fact[k] += mat[i][k];
-            }
-        }
-        //-------------------------------
-        int perimeter = 0;
-        int max = 2 * fact[0] + 2 - 1;
-        int hight;
-        int width;
-        for (int i = 0; i < colums; i++)
-        {
-            hight = fact[i];
-            if (hight == 0)
-            {
-                continue;
-            }
-            for (int j = i; j < colums; j++)
-            {
-                width = (j - i + 1);
-                if (fact[j] < hight && fact[j] != 0)
-                {
-                    hight = fact[j];
+    char *name;
+    struct directory* next;
+    struct directory* parent;
+    struct directory* child;  
+}directory;
+
+main(){
+
+    directory* root;
+    root=(directory*)malloc(sizeof(directory));
+    root->name="root";
+    root->parent=NULL;
+    root->next=NULL;
+    root->child=NULL;
+
+    int q;
+    scanf("%d",&q);
+    directory* master_temp;
+    master_temp=root;
+    while(q>0){
+        int n;
+        scanf("%d",&n);
+        if(n==1){
+            char *g;
+            scanf("%s",g);
+            if(g=="ls"){
+                directory* temp;
+                temp=master_temp;
+                while(temp!=NULL){
+                    printf("%s",temp->name);
+                    printf(" ");
                 }
-                if (fact[j] == 0)
-                {
-                    break;
-                }
-                perimeter = 2 * width + 2 * hight - 1;
-                if (perimeter > max)
-                {
-                    max = perimeter;
+            }
+            else if(g=="pwd"){
+                directory* temp;
+                temp=root;
+                while(temp!=master_temp){
+                    printf("%s",temp->child);
+                    if(temp->child!=NULL){
+                        printf("/");
+                    }
                 }
             }
         }
-        perry = max;
-        if (t_max < perry)
-        {
-            t_max = perry;
+        else if(n==2){
+            char *g;
+            char *h;
+            scanf("%s",g);
+            scanf("%s",h);
+            if(g=="cd"){
+                
+            }
         }
-        //--------------------------------------------------
+        else if(n==3){
+
+        }
     }
-    printf("%d", t_max);
     return 0;
 }
