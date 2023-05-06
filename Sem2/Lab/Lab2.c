@@ -69,7 +69,7 @@ int main()
                 printf("%d\n", temp->data);
             }
         }
-        if (strcmp(s, "Delete") == 0)
+        else if (strcmp(s, "Delete") == 0)
         {
             int d;
             scanf("%d", &d);
@@ -99,7 +99,7 @@ int main()
                 n--;
             }
         }
-        if (strcmp(s, "Add") == 0)
+        else if (strcmp(s, "Add") == 0)
         {
             int d, x;
             scanf("%d %d", &d, &x);
@@ -126,7 +126,7 @@ int main()
                 temp->data = n_value;
             }
         }
-        if (strcmp(s, "Subtract") == 0)
+        else if (strcmp(s, "Subtract") == 0)
         {
             int d, x;
             scanf("%d %d", &d, &x);
@@ -153,7 +153,7 @@ int main()
                 temp->data = n_value;
             }
         }
-        if (strcmp(s, "Xor") == 0)
+        else if (strcmp(s, "Xor") == 0)
         {
             int d, x;
             scanf("%d", &d);
@@ -178,7 +178,7 @@ int main()
             {
                 temp = head;
                 int l;
-                l = q - d;
+                l = n - d + 1;
                 count = 1;
                 while (temp != NULL)
                 {
@@ -195,7 +195,7 @@ int main()
                     xor_q = xor_q ^ temp->data;
                     temp = temp->next;
                 }
-                printf("%d", xor_q);
+                printf("%d\n", xor_q);
             }
         }
     }

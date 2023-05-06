@@ -89,7 +89,7 @@ int main()
                         new_temp = new_temp->next;
                         temp = temp->next;
                     }*/
-                    //sort(cpy);
+                    sort(cpy);
                     temp=cpy;
                     while(temp!=NULL){
                         printf("%s ",temp->name);

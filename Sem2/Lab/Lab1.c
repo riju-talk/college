@@ -71,8 +71,8 @@ int main()
                 else
                 {
                     directory *cpy;
-                    directory* temp;
-                    cpy=master_temp->child;
+                    directory *temp;
+                    cpy = master_temp->child;
                     /*
                     temp = master_temp->child->next;
                     cpy = (directory *)malloc(sizeof(directory));
@@ -89,11 +89,12 @@ int main()
                         new_temp = new_temp->next;
                         temp = temp->next;
                     }*/
-                    //sort(cpy);
-                    temp=cpy;
-                    while(temp!=NULL){
-                        printf("%s ",temp->name);
-                        temp=temp->next;
+                    sort(cpy);
+                    temp = cpy;
+                    while (temp != NULL)
+                    {
+                        printf("%s ", temp->name);
+                        temp = temp->next;
                     }
                     printf("\n");
                 }
@@ -121,7 +122,7 @@ int main()
                 printf("\n");
             }
         }
-        if (n == 2)
+        else if (n == 2)
         {
             char *g;
             char *h;
@@ -153,24 +154,28 @@ int main()
                     }
                     else
                     {
-                        while (temp != NULL)
+                        directory *n_temp;
+                        n_temp = temp;
+                        while (n_temp != NULL)
                         {
-                            if (strcmp(temp->name, h) == 0)
+                            if (strcmp(n_temp->name, h) == 0)
                             {
                                 break;
                             }
-                            temp = temp->next;
+                            n_temp = n_temp->next;
                         }
-                        if (temp == NULL)
+                        if (n_temp == NULL)
                         {
                             printf("-1\n");
-                            break;
                         }
-                        master_temp = temp;
+                        else
+                        {
+                            master_temp = n_temp;
+                        }
                     }
                 }
             }
-            if (strcmp(g, "mkdir") == 0)
+            else if (strcmp(g, "mkdir") == 0)
             {
                 directory *temp2;
                 temp2 = (directory *)malloc(sizeof(directory));
@@ -204,18 +209,16 @@ int main()
                 }
             }
         }
-        if (n == 3)
+        else if (n == 3)
         {
             char *entry1;
             char *entry2;
             char *entry3;
-            entry1 = (char *)malloc(100 * sizeof(char));
-            entry2 = (char *)malloc(100 * sizeof(char));
+            entry1 = (char *)malloc(5 * sizeof(char));
+            entry2 = (char *)malloc(2 * sizeof(char));
             entry3 = (char *)malloc(100 * sizeof(char));
             scanf("%s %s %s", entry1, entry2, entry3);
-            entry1 = (char *)realloc(entry1, 100 * sizeof(char));
-            entry2 = (char *)realloc(entry2, 100 * sizeof(char));
-            entry3 = (char *)realloc(entry3, 100 * sizeof(char));
+            entry3 = (char *)realloc(entry3, strlen(entry3)+1);
             if (master_temp->child == NULL)
             {
                 printf("-1\n");
