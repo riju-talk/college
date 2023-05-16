@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "xutility": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "AVL.C": "cpp",
+        "iostream": "cpp"
     }
 }
