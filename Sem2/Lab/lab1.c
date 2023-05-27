@@ -2,10 +2,14 @@
 #include<stdlib.h>
 
 typedef struct heap{
-    int size;
+    int heap_size;
+    int arr_size;
     int *arr;
 }heap;
 
+void min_elt(heap* elts){
+    
+}
 
 int main(){
     int n,tu;

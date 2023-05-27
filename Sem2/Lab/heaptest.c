@@ -1,12 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #include<math.h>
 
 typedef struct heap{
-    long int * arr;
-    long int capacity;
-    long int elements;
+    int * arr;
+    int capacity;
+    int elements;
 }heap;
 
 void hepify(heap* heap){
@@ -17,9 +16,6 @@ void hepify(heap* heap){
             int factor=1;
             int k=i;
             do{
-                if(heap->arr[j]<heap->arr[k]){
-                    break;
-                }
                 int temp;
                 temp=heap->arr[j];
                 heap->arr[j]=heap->arr[k];
@@ -62,34 +58,23 @@ void add_elt(heap* heap,int data){
     heap->elements++;
     hepify(heap);
 }
-
-long long int heap_sum(heap* heap){
-    long long int sum=0;
-    for(int i=0;i<heap->elements;i++){
-        sum+=heap->arr[i];
-    }
-    return sum;
-}
 int main(){
-    long int num,*arr;
     heap* sandheap;
-    scanf("%lld",&num);
-    arr=(long int*)malloc(num*sizeof(long int));
     sandheap=(heap*)malloc(sizeof(heap));
-    sandheap->elements=num;
-    sandheap->capacity=(int)pow(2,(int)log2(num));
-    for(int i=0;i<num;i++){
-        scanf("%lld",arr+i);
-    } 
-    long long int sum;
-    sandheap->arr=arr;
+    sandheap->arr=(int*)malloc(sizeof(int)*4);
+    sandheap->elements=3;
+    sandheap->capacity=8;
+    for(int i=0;i<3;i++){
+        scanf("%d",&sandheap->arr[i]);
+    }
     hepify(sandheap);
-    for(int i=0;i<num-1;i++){
-        long long int min = del_min(sandheap); 
-        long long int max = del_max(sandheap);
-        add_elt(sandheap,max-min);
-        sum=heap_sum(sandheap);
-        printf("%lld\n",sum);
+    for(int i=0;i<sandheap->elements;i++){
+        printf("%d ",sandheap->arr[i]);
+    }
+    add_elt(sandheap,2);
+    printf("\n");
+    for(int i=0;i<sandheap->elements;i++){
+        printf("%d ",sandheap->arr[i]);
     }
     return 0;
 }
